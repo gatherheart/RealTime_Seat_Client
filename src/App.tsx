@@ -1,11 +1,14 @@
 import React, { ReactElement } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import Canvas from './Canvas'
 
 const App: React.FC = (): ReactElement => {
+  console.log('APP')
   return (
     <div className="App">
       <header className="App-header">
+        <Canvas text={'Hello World'}></Canvas>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
