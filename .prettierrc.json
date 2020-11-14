@@ -5,5 +5,6 @@
   "singleQuote": true,
   "tslintIntegration": true,
   "tabWidth": 2,
-  "printWidth": 120
+  "printWidth": 120,
+  "endOfLine": "auto"
 }
