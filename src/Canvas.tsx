@@ -5,7 +5,14 @@ interface CanvasProps {
 }
 
 interface ISlot {
+  id: number
+  cord: Point
   opacity: number
+}
+
+interface Point {
+  x: number
+  y: number
 }
 
 const Canvas: React.FC<CanvasProps> = ({ text }: CanvasProps): ReactElement => {
@@ -22,7 +29,11 @@ const Canvas: React.FC<CanvasProps> = ({ text }: CanvasProps): ReactElement => {
       img.onload = () => {
         const [imgWidth, imgHeight] = fitSizesIntoCanvas(img, canvas)
         ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
-        setSlotStates((prev) => [...prev, { opacity: 1 }])
+        setSlotStates((prev) => [
+          ...prev,
+          { id: 12315, opacity: 1, cord: { x: 276, y: 186.2 } },
+          { id: 26643, opacity: 1, cord: { x: 283, y: 186.2 } },
+        ])
       }
     }
   }, [])
@@ -36,13 +47,17 @@ const Canvas: React.FC<CanvasProps> = ({ text }: CanvasProps): ReactElement => {
         width={CANVAS_SIZE}
         height={CANVAS_SIZE}
         style={{ position: 'absolute', borderColor: 'white', borderWidth: 1, top: 0, left: 0 }}
+        onClick={(event) => {
+          console.log(event.target)
+        }}
       >
         {slotStates.length !== 0
-          ? slotStates.map((slot) => {
+          ? slotStates.map((slot, idx) => {
               return (
                 <rect
-                  x={`${558.0 / 2}`}
-                  y={`${377.0 / 2}`}
+                  id={`${slot.id}`}
+                  x={`${slot.cord.x}`}
+                  y={`${slot.cord.y}`}
                   width="5.0"
                   height="5.0"
                   className="seat-normal"
@@ -50,7 +65,6 @@ const Canvas: React.FC<CanvasProps> = ({ text }: CanvasProps): ReactElement => {
                   data-center-y="382"
                   data-radius="7.0710678118654755"
                   data-id="28253340"
-                  id="28253340"
                   data-group="13"
                   style={{ fill: 'red', stroke: 'black', strokeWidth: 0, opacity: slot.opacity }}
                 ></rect>
